@@ -1,0 +1,13 @@
+%Wczytanie danych
+path = '';
+sound = ReadSound(path);
+
+%Segmentacja po³o¿enia g³oski w wyrazie
+selectedCharacter = SegmentationofCharacter(sound);
+%Segmentacja faz w g³osce (nastêp, szczyt, zestêp)
+s
+%Analiza widmowa (FFT?)
+
+%Analiza widma gêstoœci mocy
+
+%Klasyfikacja
