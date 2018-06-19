@@ -6,9 +6,9 @@ path = 'C:\Users\LastWerewolf\Desktop\pracaMgr\nagrania podejscie 2\DS_11.wav';
 sound = ReadSound(path);
 info = audioinfo('C:\Users\LastWerewolf\Desktop\pracaMgr\nagrania podejscie 2\DS_11.wav');
 
-Fs=info.SampleRate;
-T=info.TotalSamples/Fs;
-t=0:1/Fs:T-(1/Fs);
+Fs=info.SampleRate; %czêstotliwoœæ próbkowania
+T=info.TotalSamples/Fs; %czas trwania ca³ego sygna³u
+t=0:1/Fs:T-(1/Fs); %wektor czasu
 
 subplot(2,2,1);
 plot(t, sound);
@@ -18,12 +18,13 @@ title('Original Signal')
 xlabel('Time[s]');
 ylabel('Amplitude')
 
-sound = sound(40000:50000);
-t1=0:1/Fs:((length(sound)/Fs)-(1/Fs));
+sound = sound(38000:40000); % wybrany jakiœ fragment na sztywno, chwilowo
+t1=0:1/Fs:((length(sound)/Fs)-(1/Fs)); %wektor czasu wybranego fragmentu
 subplot(2,2,2);
 plot(t1,sound);
 title('Selected Signal');
 xlabel('Time [s]')
+%soundsc(sound, Fs);
 % xlabel('number of samples');
 ylabel('Amplitude');
 %Segmentacja polozenia gloski w wyrazie
@@ -35,19 +36,8 @@ ylabel('Amplitude');
 %Analiza widmowa (FFT?)
 [amplitudeSpectrum, phaseSpectrum] = SpectralAnalysis(sound);
 
-subplot(2,2,3);
-plot(amplitudeSpectrum);
-title('Amplitude Spectrum')
-xlabel('Frequenzy [Hz]');
-ylabel('Amplitude')
-
-subplot(2,2,4);
-plot(phaseSpectrum);
-title('Phase Spectrum')
-xlabel('Frequenzy [Hz]');
-ylabel('Phase')
 %Analiza widma gestosci mocy
-%soundAfterPDS = PowerDensitySpectrumAnalysis(selectedPhase);
+PowerDensitySpectrumAnalysis(sound);
 
 % jakies tam dalsze przetwarzanie pewnie...
 
