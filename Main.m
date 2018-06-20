@@ -17,16 +17,33 @@ title('Original Signal')
 %xlabel('number of samples')
 xlabel('Time[s]');
 ylabel('Amplitude')
+axis([0, max(t), 0, max(sound)]);
 
-sound = sound(38000:40000); % wybrany jakiœ fragment na sztywno, chwilowo
+sound = sound(85000:87000); % wybrany jakiœ fragment na sztywno, chwilowo
 t1=0:1/Fs:((length(sound)/Fs)-(1/Fs)); %wektor czasu wybranego fragmentu
+
+range = max(t1) - min(t1);
+t1 = (t1 - min(t1)) / range;
+x=-3;
+y=3;
+range2 = y - x;
+t1 = (t1 * range2) + x;
+
 subplot(2,2,2);
 plot(t1,sound);
 title('Selected Signal');
 xlabel('Time [s]')
-%soundsc(sound, Fs);
+soundsc(sound, Fs);
 % xlabel('number of samples');
 ylabel('Amplitude');
+xlim([-3, 3]);
+
+hold on;
+nn = normpdf(t1,0,1);
+plot(t1, nn);
+hold off;
+
+
 %Segmentacja polozenia gloski w wyrazie
 %selectedCharacter = SegmentationOfWord(sound);
 
