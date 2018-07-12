@@ -1,20 +1,20 @@
-function [amplitudeSpectrum,phaseSpectrum] = SpectralAnalysis(sound)
+function [amplitudeSpectrum, phaseSpectrum] = SpectralAnalysis(sound)
 %Analiza widmowa (FFT?)
-signal = fft(sound); %obliczanie DFT ci¹gu x
+signal = fft(sound); %obliczanie DFT
 amplitudeSpectrum = abs(signal); % widmo amplitudowe
-phaseSpectrum = unwrap(angle(signal)); %widmo fazowe;
+phaseSpectrum = unwrap(angle(signal)); %widmo fazowe
 
 %wyœwietlenie
 subplot(2,2,3);
 plot(amplitudeSpectrum);
-title('Amplitude Spectrum')
+title('Amplitude Spectrum');
 xlabel('Frequenzy [Hz]');
-ylabel('Amplitude')
+ylabel('Amplitude');
 
 subplot(2,2,4);
 plot(phaseSpectrum);
-title('Phase Spectrum')
+title('Phase Spectrum');
 xlabel('Frequenzy [Hz]');
-ylabel('Phase')
+ylabel('Phase');
 end
 
