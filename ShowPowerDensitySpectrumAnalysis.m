@@ -1,4 +1,4 @@
-function[] = ShowPowerDensitySpectrumAnalysis(sound, segment, func)
+function[] = ShowPowerDensitySpectrumAnalysis(sound, segment)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Funkcja gêstoœci widmowej mocy (PSD) pokazuje si³ê zmian (energii)
 % w funkcji czêstotliwoœci. Innymi s³owy, pokazuje, przy których wahaniach
@@ -12,50 +12,14 @@ function[] = ShowPowerDensitySpectrumAnalysis(sound, segment, func)
 
 %Analiza widma gestosci mocy
 for i = 1:length(sound)
-    %for j=1:length(sound{1,1}.Segment)
-    
-    switch(func)
-        case 'periodogram'
-            periodogramSound = periodogram(sound{1, i}.Segment{segment});%uzywa okna prostok¹tnego
-            plot(periodogramSound(200:end));
-            title('Power Density Spectrum(periodogram)')
-            hold on;
-        case 'pwelch'
-            pwelchSound = pwelch(sound{1, i}.Segment{segment});%nak³ada segment Welcha uœredniaj¹cy estymator
-            plot(pwelchSound(100:end));
-            title('Power Density Spectrum(pwelch)')
-            hold on;
-        case 'pcov'
-            pcovSound = pcov(sound{1, i}.Segment{segment}, 4); %uzywa kowariancji
-            plot(pcovSound)
-            title('Power Density Spectrum(pcov)')
-            hold on;
-        case 'peig'
-            peigSound = peig(sound{1, i}.Segment{segment}, 8); %jakieœ pseudospectrum...
-            plot(peigSound)
-            title('Power Density Spectrum(peig)')
-            hold on;
-        otherwise
-            disp('program nie obs³uguje komendy.')
-    end       
+    periodogramSound = periodogram(sound{1, i}.Segment{segment});%uzywa okna prostok¹tnego
+    periodogramSound = periodogramSound./max(periodogramSound);
+    plot(periodogramSound);
+    title('Power Density Spectrum')
+    hold on;
     xlabel('Frequenzy [Hz]');
     ylabel('Power density spectrum [dB]');
-    % end
 end
 hold off;
-
-
-
-
-% % znalezienie maksimów lokalnych
-% [pks,locs] = findpeaks(pdsSound,'SortStr','descend');
-% numberOfMarkedPeaks = 15;
-% hold on;
-%
-% %wyœwietlenie wyników
-% plot(locs(1:numberOfMarkedPeaks,1), pks(1:numberOfMarkedPeaks,1), 'o');
-% hold off;
-% ylim([0, max(pks)]);
-% xlim([0, 1000]);
 end
 

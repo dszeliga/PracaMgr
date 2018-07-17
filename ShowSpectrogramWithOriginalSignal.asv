@@ -1,9 +1,7 @@
-function [] = ShowSpectrogramWithOriginalSignal(signalSpectrum, signalFormant, segment, t, Fs)
+function [] = ShowSpectrogramWithOriginalSignal(signalSpectrum, signalFormants t, Fs)
 figure();
 subplot(2,1,1)
 showSpectrogram(signalSpectrum', Fs);
-hold on;
-showFormants(signalFormant, segment, Fs)
 title('spectrum');
 xlabel('time [s]');
 ylabel('Frequenzy [Hz]');
