@@ -16,7 +16,7 @@ for i = 1:length(signal)
     
     % [ramki, indeksy dzwieku]=[dzwiek, wielkosc ramki, przesuniecie, 'cols' lub 'rows', okno,
     % ostatnie uzupe³niæ czy odci¹æ (0,1)]
-    Tw = 30;           % analysis frame duration (ms)
+    Tw = 20;           % analysis frame duration (ms)
     Ts = 10;           % analysis frame shift (ms)
     
     Nw = round( 1E-3*Tw*Fs );    % frame duration (samples)
@@ -61,7 +61,7 @@ for i = 1:length(signal)
         axis tight;
         title('Sound pressure level to db');
         ylabel('Sound pressure level (dB)');
-        ylim([0 (max(magnitude)+10)]);
+        ylim([0 max(magnitude)+5]);
         xlim([0 Fs/2]);
         xlabel('Frequenzy [Hz]');
         hold on;

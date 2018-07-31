@@ -48,6 +48,6 @@ subplot(2,1,1); ShowPowerDensitySpectrumAnalysis(s0, 4);
 subplot(2,1,2); showSPL(s0, 4, Fs);
 
 %%
-load('plikiMat\RZ.mat');
+load('plikiMat\C.mat');
 Fs=44100;
 showSPL(data,[],Fs);
