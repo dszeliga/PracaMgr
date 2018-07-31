@@ -1,6 +1,6 @@
-function [allFormants] = findFormants( signal, Fs, segment)
+function [allFormants] = findFormants(signal, Fs, segment)
 allFormants =[];
-if exist('segment','var')
+if exist('segment','var') && ~isempty(segment)
     for p = 1:length(signal)
         %filtracja okienkowa oknem Hamminga
         x1 = signal{1, p}.Segment{segment}.*hamming(length(signal{1, p}.Segment{segment}));

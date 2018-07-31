@@ -4,20 +4,27 @@ formants = findFormants(signal, Fs, segment);
 
 %znajdz srodki segmentów
 allMiddles =[];
-for i=1:length(signal)
-    middleOfSegment = floor(length(signal{1,i}.Segment{segment})/2);
+
+if exist('segment', 'var') && ~isempty(segment)
+    for i=1:length(signal)
+        middleOfSegment = floor(length(signal{1,i}.Segment{segment})/2);
+        allMiddles =[allMiddles; middleOfSegment];
+    end
+else
+    middleOfSegment = floor(length(signal)/2);
     allMiddles =[allMiddles; middleOfSegment];
 end
 
 % utwórz wektor czasu
 t(1) = allMiddles(1);
-for k = 2:length(allMiddles);
+for k = 2:length(allMiddles)
     t(k) = t(k-1) + allMiddles(k-1)+allMiddles(k);
 end
 
 for l = 1:length(t)
     t(l)=(t(l)*max(t0))/max(t);
 end
+
 hold on;
 % for m=1:size(formants,2)
 %     plot(t,formants(:,m), '.k', 'Markersize', 10);

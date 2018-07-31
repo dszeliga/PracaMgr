@@ -13,6 +13,7 @@ rootsOfLPC = roots(coefLPC);
 
 %wybranie pierw. z dodatni¹ lub zerow¹ czêœci¹ urojon¹
 rootsOfLPC = rootsOfLPC(imag(rootsOfLPC)>=0);
+
 %okreœlenie k¹tów odpowiadaj¹cych pierwiastkom wielomianu
 anglesOfRoots = atan2(imag(rootsOfLPC), real(rootsOfLPC));
 
