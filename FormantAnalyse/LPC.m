@@ -2,7 +2,7 @@ function [formants]= LPC(x1, Fs)
 % liniowa 
 
 %preemfaza - filtracja górnoprzepustowa
-preemphase = [1 0.63];
+preemphase = -0.8;
 x1 = filter(1,preemphase,x1);
 
 %uzyskanie wspó³czynników predykcji liniowej 

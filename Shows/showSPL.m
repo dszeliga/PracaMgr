@@ -16,7 +16,7 @@ for i = 1:length(signal)
     
     % [ramki, indeksy dzwieku]=[dzwiek, wielkosc ramki, przesuniecie, 'cols' lub 'rows', okno,
     % ostatnie uzupe³niæ czy odci¹æ (0,1)]
-    Tw = 30;           % analysis frame duration (ms)
+    Tw = 20;           % analysis frame duration (ms)
     Ts = 10;           % analysis frame shift (ms)
     
     Nw = round( 1E-3*Tw*Fs );    % frame duration (samples)
@@ -42,6 +42,8 @@ for i = 1:length(signal)
         
         %https://www.mathworks.com/matlabcentral/answers/15770-scaling-the-fft-and-the-ifft
         
+        
+    
         magnitude = sqrt(real(z).^2+imag(z).^2);
         magnitude = 10*log10(magnitude);
         
@@ -73,14 +75,14 @@ for i = 1:length(signal)
         ylabel('Sound pressure level (dB)');
         xlabel('time [s]');
         hold on;
-        %
+        
        
-        %         pxx = pmtm(sound,1.5,length(sound),Fs,'centered');
-        %         axis tight
-        %         title('Sound pressure level');
-        %         ylabel('Sound pressure level (dB)');
-        %         xlabel('Frequenzy [Hz]');
-        %         hold on;     
+                pxx = pmtm(sound,1.5,length(sound),Fs,'centered');
+                axis tight
+                title('Sound pressure level');
+                ylabel('Sound pressure level (dB)');
+                xlabel('Frequenzy [Hz]');
+                hold on;     
         
     end
     
